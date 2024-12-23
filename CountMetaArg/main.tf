@@ -23,6 +23,6 @@ resource "aws_instance" "web" {
   count = "2"
 
   tags = {
-    Name = "Test_server"
+    Name = "Test_server-${count.index}"
   }
 }
