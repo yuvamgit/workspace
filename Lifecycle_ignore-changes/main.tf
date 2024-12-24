@@ -4,12 +4,16 @@ resource "aws_instance" "app-server" {
   availability_zone = "ap-south-1b"
 
   tags = {
-    Name = "Appserver"
+    Name = "Dev-server"
   }
 
   lifecycle {
-    create_before_destroy = true
-#    prevent_destroy       = true
+    ignore_changes = [
+      tags,
+      #      instance_type,
+      #      availability_zone
+
+    ]
   }
 
 }
