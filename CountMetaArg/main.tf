@@ -1,3 +1,4 @@
+/*
 data "aws_ami" "test" {
   most_recent = true
   owners      = ["amazon"]
@@ -24,5 +25,27 @@ resource "aws_instance" "web" {
 
   tags = {
     Name = "Test_server-${count.index}"
+  }
+}
+
+*/
+
+
+
+resource "random_string" "random-name" {
+  length  = 10
+  upper   = false
+  special = false
+  count   = 2
+  # override_special = "/@£$"    # my understand
+
+}
+
+resource "aws_s3_bucket" "test-bucket" {
+  bucket = "jack-s3-bucket-${count.index}-${random_string.random-name[count.index].id}"
+  count  = 2
+
+  tags = {
+    Name = "bucket-${count.index}"
   }
 }
