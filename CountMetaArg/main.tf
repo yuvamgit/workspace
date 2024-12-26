@@ -15,7 +15,9 @@ data "aws_ami" "test" {
 }
 
 output "ami-id" {
-  value = data.aws_ami.test.id
+  value = data.aws_ami.test.id  
+  description = "AMI id used to create instances in Mumbai region."   # optonal
+#  ephemeral = true            # avoiding persisting those values to state or plan files
 }
 
 resource "aws_instance" "web" {
@@ -49,3 +51,4 @@ resource "aws_s3_bucket" "test-bucket" {
     Name = "bucket-${count.index}"
   }
 }
+
