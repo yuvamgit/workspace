@@ -65,6 +65,7 @@ resource "aws_subnet" "private-subnet-1b" {
     Name = "private-subnet-1b"
   }
 }
+
 # Intergateway for both Availability Zone
 resource "aws_internet_gateway" "demo-igw" {
   vpc_id = aws_vpc.demo-vpc.id
