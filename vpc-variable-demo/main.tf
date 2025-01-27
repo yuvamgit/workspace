@@ -57,6 +57,8 @@ resource "aws_nat_gateway" "nat-gw" {
   subnet_id     = element(aws_subnet.public-subnet[*].id, count.index)
   tags = merge(var.common-tags,
   { "Name" = "demo-vpc-nat-gw-${count.index + 1}" })
+
+  depends_on = [ aws_internet_gateway.demo-vpc-igw ]
 }
 
 resource "aws_route_table" "pri-subnet-rt" {
